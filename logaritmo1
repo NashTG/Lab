@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <getopt.h>
+#include <stdlib.h>         
+#include <unistd.h>
+#include <ctype.h>
+
+static double c0 = +1.0;	
+static double c1 = +0.333333333;		//(1/3)
+static double c2 = +0.2;			//(1/5)
+static double c3 = +0.142857142;		//(1/7)
+static double c4 = +0.111111111;		//(1/9)
+static double c5 = +0.090909090;		//(1/11)
+static double c6 = +0.076923076;		//(1/13)
+static double c7 = +0.066666666;		//(1/15)
+static double c8 = +0.058823529;		//(1/17)
+
+double logaritmo(double x){
+  double x2,x4,x8,x16;
+	double f = 2*(x-1)/(x+1);
+	f*f
+x2*x2
+x4*x4
+x8*x8
+r1=c0*f
+r2=c1*x2
+r3=r2*f
+r4=r3+r1
+r5=c2*x4
+r6=r5*f
+r7=r6+r4
+r8=c3*x4
+r9=r8*x2
+r10=r9*f
+r11=r10+r7
+r12=c4*x8
+r13=r12*f
+r14=r13+r11
+r15=c5*x8
+r16=r15*x2
+r17=r16*f
+r18=r17+r14
+r19=c6*x8
+r20=r19*x4
+r21=r20*f
+r22=r21+r18
+r23=c7*x8
+r24=r23*x4
+r25=r24*x2
+r26=r25*f
+r27=r26+r22
+r28=c8*x16
+r29=r28*f
+r30=r29+r27
+
+}
+
+int main(int argc, char** argv){
+	
+char * ivalue = NULL;		
+  char *nvalue = NULL;
+  int index;
+  int c;
+
+  opterr = 0;
+
+  while ((c = getopt (argc, argv, "i:n:")) != -1)
+    switch (c)
+      {
+      case 'i':
+        ivalue = optarg;
+        break;
+      case 'n':
+        nvalue = optarg;
+        break;
+      case '?':
+        if (optopt == 'c')
+          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        return 1;
+      default:
+        abort ();
+      }
+
+  printf ("ivalue = %s, nvalue = %s\n",
+          ivalue, nvalue);
+
+  for (index = optind; index < argc; index++)
+    printf ("Non-option argument %s\n", argv[index]);
+	
+	int iteracion;
+	iteracion = atoi(ivalue);
+	int valor,i;
+	valor = atoi(nvalue);
+	double ultimo=0; 	
+	for(i=0;i<iteracion;i++){
+	ultimo= logaritmo(valor);
+	}
+	printf("%f\n",ultimo);
+	
+	  return 0;
+}
