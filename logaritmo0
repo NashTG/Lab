@@ -15,8 +15,8 @@ static double c7 = +0.066666666;		//(1/15)
 static double c8 = +0.058823529;		//(1/17)
 
 double logaritmo(double x){
-	double f = 2*(x-1)/(x+1);
-	return (c0 * f)
+	double f = 2*(x-1)/(x+1);	//fracción que se mantiene constante en cada llamado
+	return (c0 * f)			
 		+(c1 *f *f *f)
 		+(c2 *f *f *f *f *f)
 		+(c3 *f *f *f *f *f *f *f)
@@ -26,3 +26,55 @@ double logaritmo(double x){
 		+(c7 *f *f *f *f *f *f *f *f *f *f *f *f *f *f *f)
 		+(c8 *f *f *f *f *f *f *f *f *f *f *f *f *f *f *f *f *f);
 }
+
+int main(int argc, char** argv){
+	
+  char * ivalue = NULL;		
+  char *nvalue = NULL;
+  int index;
+  int c;
+
+  opterr = 0;
+
+  while ((c = getopt (argc, argv, "i:n:")) != -1)
+    switch (c)
+      {
+      case 'i':
+        ivalue = optarg;
+        break;
+      case 'n':
+        nvalue = optarg;
+        break;
+      case '?':
+        if (optopt == 'c')
+          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        return 1;
+      default:
+        abort ();
+      }
+
+  printf ("ivalue = %s, nvalue = %s\n",
+          ivalue, nvalue);
+
+  for (index = optind; index < argc; index++)
+    printf ("Non-option argument %s\n", argv[index]);
+	
+	int iteracion;
+	iteracion = atoi(ivalue);
+	int valor,i;
+	valor = atoi(nvalue);
+	double ultimo=0; 	
+	for(i=0;i<iteracion;i++){
+	ultimo= logaritmo(valor);
+	}
+	printf("%f\n",ultimo);
+	
+	  return 0;
+}
+
