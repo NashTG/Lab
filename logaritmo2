@@ -21,6 +21,15 @@ double logaritmo(double x){
 	x4 = x2 * x2;
 	x8 = x4 * x4;
 	x16 = x8 * x8;
+	return (c0 * f)
+		+(c1 *x2 *f)
+		+(c2 *x4 *f)
+		+(c3 *x4 *x2 *f)
+		+(c4 *x8 *f)
+		+(c5 *x8 *x2 *f)
+		+(c6 *x8 *x4 *f)
+		+(c7 *x8 *x4 *x2 *f)
+		+(c8 *x16 *f);
 	
 }
 
